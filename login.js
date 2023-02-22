@@ -1,25 +1,13 @@
-const usernameInput = document.getElementById("username");
-const passwordInput = document.getElementById("password");
-const submitButton = document.getElementById("submit-button");
+const usernameInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const submitButton = document.getElementById('submit-button');
+if (window?.xprops?.prefilledEmail) {
+  document.querySelector('#email').value = window.xprops.prefilledEmail;
+}
 
-usernameInput.addEventListener("input", () => {
-  if (usernameInput.validity.valid) {
-    usernameInput.classList.remove("invalid");
-  } else {
-    usernameInput.classList.add("invalid");
+function onClick() {
+  const email = document.getElementById('email').value;
+  if (window?.xprops?.onLogin) {
+    window?.xprops?.onLogin(email);
   }
-});
-
-passwordInput.addEventListener("input", () => {
-  if (passwordInput.validity.valid) {
-    passwordInput.classList.remove("invalid");
-  } else {
-    passwordInput.classList.add("invalid");
-  }
-});
-
-submitButton.addEventListener("click", (event) => {
-  if (!usernameInput.validity.valid || !passwordInput.validity.valid) {
-    event.preventDefault();
-  }
-});
+}
